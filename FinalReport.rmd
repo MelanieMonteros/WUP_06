@@ -87,11 +87,11 @@ This test is not showing the full results and can't be fully trusted, therefore 
 
 
 ```{r}
-fisherXY(mydata$race, mydata$cappun)
+fisherXY(mydata$race, mydata$cappun,printAll = TRUE)
 ```
 
   
-  thanks to fisherXY Test we were able to see all the race different from each other with all getting different levels for difference between each other 
+ The fisherXY Test is showing that there is a diffent for the black and white race, however not between the white and other race and black and other race
   
   
 # Discussion and Conclusion
