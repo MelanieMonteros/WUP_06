@@ -101,6 +101,7 @@ fisherXY(mydata$race,mydata$cappun)
 ```
   
   by running the fisherXY test we can see that the each race is different from the other.
+  
 
 ## More data version
 
