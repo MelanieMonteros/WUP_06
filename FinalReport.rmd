@@ -91,7 +91,8 @@ fisherXY(mydata$race, mydata$cappun)
 ```
 
   
-  thanks to fisherXY Test we were able to see all the race different from each other with all getting differnet levels for difference between eachother 
+  thanks to fisherXY Test we were able to see all the race different from each other with all getting different levels for difference between each other 
+  
   
 # Discussion and Conclusion
 
