@@ -1,7 +1,7 @@
 ---
-title: "GSS challange Less Data"
+title: "GSS challange More Data"
 author: "Melanie Monteros"
-date: "march 1st 2024"
+date: "March 1st, 2024"
 output: html_document
 ---
 
@@ -12,50 +12,63 @@ output: html_document
 
 
 ```{r include=FALSE,echo=FALSE}
+source(file="fisherXY.R")
 require(tidyverse)
 require(tigerstats)
 require(knitr)
 require(foreign)
 GSS <-read.dta(file="GSS2016.dta")
 GSS <- droplevels(GSS)
-mydata <- select(GSS,sex,race,cappun,degree,relig,gunlaw,tvhours,owngun,age,wordsum)
+mydata <- select(GSS,race,cappun)
 mydata <- na.omit(mydata)
+source("fisherXY.R")
 ```
+
+
+
+
+
 
 # Introduction
 
 <!--In this section you explain what you are trying to show.  Where did the data come from?  What is the research or other question you are trying to answer?.  If you skimp in this section expect to be marked down in your grade. Paint a picture of the project a couple of paragraphs is expected!-->
 
-Is attitude toward capitol punishment (cappun) independent of race (race)?
+  Is attitude toward capitol punishment (cappun) independent of race (race)?
 If not, then whose view differs from whom??
+
 
 # Methods
 
 <!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method. Discuss what data manipulations may be needed for example subsetting or other binning procedures and what sort of graphical displays and inferential tools will be used!-->
 
-  for this Method we are going to be useing the 'Cat_Cat-rad' helper file.
+  When looking at the Mydata file, we can see that this is a categorical on categorical data, meaning we will be using the 'Cat_Cat.rmd* help file.
+
+
 
 # Results
 
 <!--Divide this section into two sub-sections:  One for your descriptive  results and one for your inferential results.!-->
-
+  
 ## Descriptive Results
 
+
 ### Graphical Descriptive Results
+
 
 <!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question. Bottom line is to explain the features of the graph that are relevant to conforming or departing to what is expected by your null hypothesis !-->
 
 ```{r}
-barchartGC(~race + cappun,data=mydata)
-barchartGC(~race + cappun,data=mydata, type="percent")
+barchartGC(~race + cappun, data = mydata)
+barchartGC(~race + cappun,data = mydata, type="percent")
 
 ```
-  This graph shows that the white race is more in favor to cappun than both the black and other race. well the black race is more in opposition to cappun then both the white and other race, which shares the same result as in the 'Master' file.
 
 
-## Now with LESS data (more variables give less data due to NA's) create the approate graphic displays to answer the question.
+  By looking at the graph we can see the difference in how the white race is more in favor of than cappun both the black race as while as the other race. another thing that we can see is how the black race is more oppisiton to capun both the white and other race
 
 
+
+## Now with The Most data (fewer variables gives more data points)
 
 
 
@@ -64,11 +77,16 @@ barchartGC(~race + cappun,data=mydata, type="percent")
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
 ```{r}
-table1 <- xtabs(~race + cappun,data=mydata)
+table1 <- xtabs(~race + cappun, data=mydata)
 rowPerc(table1)
 colPerc(table1)
 ```
-   Both these tables show the number in how each race is in favor or oppose to cappun. showing how the white race is more in favor of cappun then the black and other race with a 65% in favor and only a 35% in opposition. the black race shows the opposite, with only 42% in favor and a 57% in opposition. other* race meet somewhere in the middle with a 55% in favor and a 44% in opposition.
+
+  These Tables show the exact numbers of both favor and opposition for each race..
+in which shows that the white race is far more in favor of cappun when black and other race, with a favor number of 65% and only a opposition number of 35% in the other hand the black race shows the opposite with only a 42% in favor and a 57% in opposition. while the 'other'
+race fall more in the middle with a 55% favor and a 44% opposition
+
+## Now with More data
 
 
 
@@ -82,18 +100,23 @@ chisqtestGC(table1)
 fisher.test(table1)
 ```
 
-This test is not showing the full results and can't be fully trusted, therefore it will be added to do a fisherxy test.
-
-
-
+  This test is not specific enough  to get a full trusting results, therefore it will be needed to do a a fisherY test.
+  
 ```{r}
-fisherXY(mydata$race, mydata$cappun,printAll = TRUE)
+fisherXY(mydata$race,mydata$cappun)
 ```
+  
+  by running the fisherXY test we can see that the each race is different from the other.
+  
 
-  
- The fisherXY Test is showing that there is a diffent for the black and white race, however not between the white and other race and black and other race
-  
-  
+## More data version
+
+
 # Discussion and Conclusion
 
 <!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
+
+
+
+overall the results in both branch seemed to be similar however there was a difference in numbers between my master branch and my number 2 branch. Then running the fisherXY test on my master branch there seem to be more people in all race, making it seem like they opinions, but then running the fisherxY test on
+all held different my number 2 branch there was a significantly less amount of people making it seem like the only difference in opinions was the black and white race
